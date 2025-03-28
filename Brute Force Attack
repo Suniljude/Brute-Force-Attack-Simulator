@@ -22,7 +22,7 @@ def connect(username, password):
         return None
 
 username = "suniljudha"
-passwords = ["test", "backup", "password", "12345","ALWAYShappy@1", "ALWAYShappy1", "root", "administrator", "ftp", "admin1"]
+passwords = ["test", "backup", "password", "12345", "root", "administrator", "ftp", "admin1"]
 
 for password in passwords:
     attempt = connect(username, password)
