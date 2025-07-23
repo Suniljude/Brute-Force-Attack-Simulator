@@ -21,7 +21,7 @@ def connect(username, password):
         print(f"Socket error:{e}")
         return None
 
-username = "suniljudha"
+username = "Username"
 passwords = ["test", "backup", "password", "12345", "root", "administrator", "ftp", "admin1"]
 
 for password in passwords:
